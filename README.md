@@ -6,4 +6,4 @@ Minesweeper made using Pygame Module of Python
     ```
 2. Open the Executable Application file named 'minesweeper.exe'
 
-**Note : The Application may throw an error if the machine is not 64 bit and Windows 10 or above 
+##Note : The Application may throw an error if the machine is not 64 bit and Windows 10 or above 
