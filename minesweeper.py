@@ -54,9 +54,9 @@ def restart():
 #function to display click count
 def displayClicks():
     global oldClick
-    coveringText = font.render(f"Clicks : {oldClick} / 10",True,WHITE)
+    coveringText = font.render(f"Clicks : {oldClick} / 20",True,WHITE)
     screen.blit(coveringText,(370,510))
-    clickText = font.render(f"Clicks : {clicks} / 10",True,BLACK)
+    clickText = font.render(f"Clicks : {clicks} / 20",True,BLACK)
     screen.blit(clickText,(370,510))
     oldClick = clicks
 
@@ -98,8 +98,8 @@ drawLines()
 plantMines()
 
 #description text
-STRING = " FIND 7 HIDDEN MINES WITHIN 10 CLICKS "
-infoText = font.render(STRING,True,WHITE,BLACK)
+gameInfo = " FIND 7 HIDDEN MINES WITHIN 20 CLICKS "
+infoText = font.render(gameInfo,True,WHITE,BLACK)
 screen.blit(infoText,(45,555))
 
 #reset button
@@ -120,7 +120,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN and clicks<10 and event.pos[1]<=500:
+        if event.type == pygame.MOUSEBUTTONDOWN and clicks<20 and event.pos[1]<=500:
             clicks = clicks+1
             # print(clicks)
             pos = pygame.mouse.get_pos()
@@ -136,9 +136,14 @@ while True:
             else:
                 beepSound(2)
                 screen.blit(imageCross,(x*50,y*50))
-        if event.type==pygame.MOUSEBUTTONDOWN and clicks>=10 and minesFound!=7 and event.pos[1]<500:
+        if event.type==pygame.MOUSEBUTTONDOWN and clicks>=20 and minesFound!=7 and event.pos[1]<500:
             beepSound(-1)
             screen.blit(failed,failedRect)
+            for i in range(10):
+                for j in range(10):
+                    if consoleBoard[i][j]==1:
+                        screen.blit(imageMine,(j*50,i*50))
+            
         if (event.type == pygame.KEYDOWN and pygame.K_r) or (event.type==pygame.MOUSEBUTTONDOWN and event.pos[1]>500 and event.pos[0]<120):
             restart()
     screen.blit(reset,resetRect)
